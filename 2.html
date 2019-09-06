@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .canvas1 {
+        box-shadow: 0px 0px 10px 2px red inset;
+    }
+
+    .canvas2 {
+        box-shadow: 0px 0px 10px 2px blue inset;
+    }
+</style>
+
+<body>
+    <canvas width="500" height="500" class="canvas1"></canvas>
+    <canvas width="500" height="500" class="canvas2"></canvas>
+    <script>
+        let cavs1 = document.getElementsByClassName("canvas1")[0];
+        let enronment = cavs1.getContext("2d");
+        function COLOR(row,col) {
+            for (let i = 0; i < row; i++) {
+                for (let s = 0; s < col; s++) {
+                    enronment.fillStyle = `rgb(${Math.floor(255/row*i)},${Math.floor(255/col*s)},${Math.floor(255-255/row*i)})`;
+                    enronment.fillRect(500/row*i,500/col*s,500/row*(i+1),500/col*(s+1));
+                }
+            }
+        }
+        COLOR(20,20);
+        let cavas2 = document.getElementsByClassName("canvas2")[0];
+        let enronments = cavas2.getContext("2d");
+        function COLORS(row,col){
+            for(let t=0;t<row;t++){
+                for(let y=0;y<col;y++){
+                    enronments.beginPath();
+                    enronments.strokeStyle = `rgb(${255-255/row*t},${255-255/col*y},${255/row*t})`;
+                    enronments.arc(500/row*t+500/row/2,500/col*y+500/col/2,500/col/2,0,Math.PI*2);
+                    enronments.closePath();
+                    enronments.stroke()
+                }
+            }
+        }
+        COLORS(50,50)
+        //色彩管理
+    </script>
+</body>
+
+</html>
