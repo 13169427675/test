@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    .cvas{
+        display: block;
+        margin: 80px auto;
+        width: 1400px;
+        height:500px;
+        box-shadow: 0px 0px 10px 2px red ;
+    }
+</style>
+<body>
+    <canvas width="1400" height="500" class="cvas"></canvas>
+    <script>
+        let cvas = document.getElementsByClassName("cvas")[0];
+        let environment = cvas.getContext("2d");
+        function keyboard(x1,y1,x2,y2,val,vx,vy){
+        environment.beginPath();
+        environment.shadowOffsetX=0;
+        environmentshadowOffsetY=0;
+        environment.shadowBlur =5;
+        environment.shadowColor = "red"
+        environment.fillStyle = "black";
+        environment.fillRect(x1,y1,x2,y2);
+        environment.font = "14px 楷体";
+        environment.fillStyle = "white";
+        environment.fillText(val,vx,vy);
+        environment.closePath();
+        }
+        let a=58,b=58;
+        let c = ["ESC","F1","F2","F3","F4","F5","F6","F7","F8","F9","F10","F11","F12"];
+        for(let i=0;i<13;i++){
+            if(c[i].length===3){ 
+                keyboard(5+a*i,20,50,50,c[i],18+b*i,50);
+            }else{
+                keyboard(5+a*i,20,50,50,c[i],80+b*(i-1),50);
+            }
+        }
+        function main_board(x1,y1,x2,y2,val,vx,vy){
+            
+        }
+    </script>
+</body>
+</html>

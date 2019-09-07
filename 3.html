@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    #canvas {
+        box-shadow: 0px 0px 10px 2px greenyellow;
+        background-color: red;
+    }
+</style>
+
+<body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <script>
+        let cva = document.getElementById("canvas");
+        let cvas = cva.getContext("2d");
+        let img = new Image();
+        img.src="C:/Users/Smile/Desktop/1.jpg";
+        img.onload = function(){
+            //drawImage可以有 3,5,9个参数，分别不同
+            
+            // cvas.drawImage(img,0,0);
+            /*当是2个参数时：第一个参数是帧数据、2.3参数是坐标，
+            表示以那个点为起点开始画，数据多大就画多大，直到超过画布大小*/
+           
+            // cvas.drawImage(img,0,0,500,500)
+            /*5个参数时：表示固定图片的大小，上面上固定了图片大小为500*500*/
+            
+            // cvas.globalCompositeOperation = "xor";
+            // 当globalCompositeOperation的属性值为xor时：重叠处会变透明（只对2层重叠有效
+            // 三层的话 因为前2层重叠已经透明了 所以第3层只能显示原来的图层.）
+            
+            // cvas.globalCompositeOperation = "copy";
+            //当globalCompositeOperation的属性值为copy时：只显示新图形
+
+            cvas.globalCompositeOperation = "destination-atop";
+            //当globalCompositeOperation的属性值为destination-atop时：只显示与新图层重叠部分(最底层)
+
+            cvas.drawImage(img,100,100,300,300,200,200,300,300  )
+            /*当9个参数时：表示裁剪，2-5表示要裁剪的区域，6-9表示
+            裁剪得到的要放在那个位置并且以多大的区域来显示*/
+            cvas.beginPath();
+            cvas.fillStyle="yellow";
+             cvas.fillRect(300,300,100,100);
+             cvas.closePath();
+             cvas.beginPath();
+            cvas.fillStyle="blue";
+             cvas.fillRect(250,250,50,50);
+             cvas.closePath();
+           /*当xor时：有多个第二图层、则按顺序执行。显示与第二图层的第一个重叠。其余部分透明
+           然后剩下的第二图层都是与透明图层重叠。故只显示原图层。所以 最后显示的应为最后一个第二图层原样式
+           */
+        }
+       
+
+        
+    </script>
+</body>
+
+</html>
